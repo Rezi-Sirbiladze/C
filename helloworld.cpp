@@ -17,6 +17,8 @@ void usefulMathRelatedFunctions_9();
 void hypotenuseCalculatorPractice_10();
 void ifStataments_11();
 void switches_12();
+void console_calculator_program_13();
+void ternaryOperator_14();
 //* Functions
 
 // 9, 10
@@ -46,7 +48,7 @@ namespace second
 
 int main()
 {
-    switches_12();
+    ternaryOperator_14();
     return 0;
 }
 
@@ -240,4 +242,68 @@ void switches_12()
         std::cout << "Invalid month";
         break;
     }
+}
+
+void console_calculator_program_13()
+{
+    char op;
+    double num1;
+    double num2;
+    double result;
+
+    std::cout << "************** CALCULATOR **************" << '\n';
+
+    std::cout << "Enter either (+ - * /)" << '\n';
+    std::cin >> op;
+
+    std::cout << "Enter #1" << '\n';
+    std::cin >> num1;
+
+    std::cout << "Enter #2" << '\n';
+    std::cin >> num2;
+
+    switch (op)
+    {
+    case '+':
+        result = num1 + num2;
+        break;
+    case '-':
+        result = num1 - num2;
+        break;
+    case '*':
+        result = num1 * num2;
+        break;
+    case '/':
+        if (num2 != 0)
+        {
+            result = num1 / num2;
+        }
+        else
+        {
+            result = 0;
+        }
+        break;
+    default:
+        std::cout << "That wasn't a valid response" << '\n';
+        break;
+    }
+
+    std::cout << "result: " << result << '\n';
+
+    std::cout << "****************************************";
+}
+
+void ternaryOperator_14()
+{
+    int grade = 75;
+    grade >= 60 ? std::cout << "You pass!" << '\n' : std::cout << "You fail!" << '\n';
+
+    int number = 9;
+    number % 2 ? std::cout << "ODD" << '\n' : std::cout << "EVEN" << '\n';
+
+    bool hungry = true;
+    hungry ? std::cout << "You are hungry" << '\n' : std::cout << "You are full" << '\n';
+
+    hungry = false;
+    std::cout << (hungry ? "You are hungry" : "You are full");
 }
