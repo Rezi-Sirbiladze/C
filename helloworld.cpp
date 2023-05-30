@@ -19,6 +19,12 @@ void ifStataments_11();
 void switches_12();
 void console_calculator_program_13();
 void ternaryOperator_14();
+void logicalOperators_15();
+void temperatureConversionProgram_16();
+void usefulStringMethodsInC_17();
+void whileLoops_18();
+void dowhileloops_19();
+void forLoops_20();
 //* Functions
 
 // 9, 10
@@ -48,7 +54,7 @@ namespace second
 
 int main()
 {
-    ternaryOperator_14();
+    forLoops_20();
     return 0;
 }
 
@@ -251,7 +257,8 @@ void console_calculator_program_13()
     double num2;
     double result;
 
-    std::cout << "************** CALCULATOR **************" << '\n';
+    std::cout << '\n'
+              << "************** CALCULATOR **************" << '\n';
 
     std::cout << "Enter either (+ - * /)" << '\n';
     std::cin >> op;
@@ -306,4 +313,154 @@ void ternaryOperator_14()
 
     hungry = false;
     std::cout << (hungry ? "You are hungry" : "You are full");
+}
+
+void logicalOperators_15()
+{
+    int temp;
+    bool sunny = true;
+
+    std::cout << "Enter the temperature: " << '\n';
+    std::cin >> temp;
+
+    if (temp > 0 && temp < 30)
+    {
+        std::cout << "The temperature is good!" << '\n';
+    }
+    else
+    {
+        std::cout << "The temperature is bad!" << '\n';
+    }
+
+    if (temp <= 0 || temp >= 30)
+    {
+        std::cout << "The temperature is bad!" << '\n';
+    }
+    else
+    {
+        std::cout << "The temperature is good!" << '\n';
+    }
+
+    if (!sunny)
+    {
+        std::cout << "It is cloudy outside!" << '\n';
+    }
+    else
+    {
+        std::cout << "It is sunny outside!" << '\n';
+    }
+}
+
+void temperatureConversionProgram_16()
+{
+    double temp;
+    char unit;
+    double result;
+
+    std::cout << '\n'
+              << "************** Temperature conversion **************" << '\n';
+
+    std::cout << "F = Fahrenheit" << '\n';
+    std::cout << "C = Celsius" << '\n';
+
+    std::cout << "What unit would you like to convert to: " << '\n';
+    std::cin >> unit;
+
+    if (unit == 'F' || unit == 'f')
+    {
+        std::cout << "Enter the temperature in Celsius: " << '\n';
+        std::cin >> temp;
+        result = (temp * 9 / 5) + 32;
+        std::cout << "Temperature is: " << result << 'F' << '\n';
+    }
+    else if (unit == 'C' || unit == 'c')
+    {
+        std::cout << "Enter the temperature in Fahrenheit: " << '\n';
+        std::cin >> temp;
+        result = (temp - 32) * 5 / 9;
+        std::cout << "Temperature is: " << result << 'C' << '\n';
+    }
+    else
+    {
+        std::cout << "Please enter in only C or F" << '\n';
+    }
+
+    std::cout << "****************************************************" << '\n';
+}
+
+void usefulStringMethodsInC_17()
+{
+    std::string name;
+
+    std::cout << "Enter your name: " << '\n';
+    std::getline(std::cin, name);
+
+    if (name.length() > 12)
+    {
+        std::cout << "Your name can't be over 12 characters" << '\n';
+    }
+    else
+    {
+        std::cout << "Welcome " << name << '\n';
+    }
+
+    if (name.empty())
+    {
+        std::cout << "You didn't enter your name" << '\n';
+    }
+    else
+    {
+        std::cout << "Hello " << name << '\n';
+    }
+
+    name.append("@gmail.com");
+    std::cout << "Your username is now: " << name << '\n';
+
+    std::cout << name.at(0) << '\n';
+
+    name.insert(0, "C_");
+    std::cout << "Your username is now: " << name << '\n';
+
+    std::cout << "Find spaces: " << name.find(' ') << '\n';
+
+    name.erase(0, 2);
+    std::cout << "Your username is now: " << name << '\n';
+
+    name.clear();
+    std::cout << "Hello " << name << '\n';
+}
+
+void whileLoops_18()
+{
+    std::string name;
+
+    while (name.empty())
+    {
+        std::cout << "Enter your name: " << '\n';
+        std::getline(std::cin, name);
+    }
+
+    std::cout << "Hello " << name << '\n';
+}
+
+void dowhileloops_19()
+{
+    int number;
+
+    do
+    {
+        std::cout << "Enter a positive number: " << '\n';
+        std::cin >> number;
+    } while (number < 0);
+
+    std::cout << "The positive number is: " << number << '\n';
+}
+
+void forLoops_20()
+{
+    for (int i = 0; i <= 10; i++ /*or i-- , i+=2*/)
+    {
+        std::cout << i << '\n';
+    }
+    std::cout << "HAPPY NEW YEAR!" << '\n';
 }
