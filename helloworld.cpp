@@ -29,6 +29,9 @@ void breakContinue_21();
 void nestedLoops_22();
 void randomNumberGenerator_23();
 void randomEventGenerator_24();
+void numberGuessingGame_25();
+void userDefinedFunctions_26(std::string name, int age);
+double returnKeyword_27();
 //* Functions
 
 // 23, 24
@@ -62,7 +65,13 @@ namespace second
 
 int main()
 {
-    randomEventGenerator_24();
+    std::string name = "Rezi";
+    int age = 23;
+
+    returnKeyword_27();
+
+    std::cout << "Result: " << returnKeyword_27() << "cm^2";
+
     return 0;
 }
 
@@ -555,4 +564,59 @@ void randomEventGenerator_24()
         std::cout << "You lose!" << '\n';
         break;
     }
+}
+
+void numberGuessingGame_25()
+{
+    srand(time(NULL));
+
+    int num = rand() % 100 + 1;
+    int guess;
+    int tries;
+    bool correct = false;
+
+    std::cout << '\n'
+              << "************** Number guessing game **************" << '\n';
+    do
+    {
+        std::cout << "What number am I thinking of?: " << '\n';
+        std::cin >> guess;
+
+        if (num == guess)
+        {
+            std::cout << "You'r right King!" << '\n';
+            std::cout << "You only needed " << tries << " tries" << '\n';
+            correct = true;
+        }
+        else if (num > guess)
+        {
+            std::cout << "Higher" << '\n';
+            tries++;
+        }
+        else
+        {
+            std::cout << "Lower" << '\n';
+            tries++;
+        }
+
+    } while (!correct);
+
+    std::cout << "**************************************************" << '\n';
+}
+
+void userDefinedFunctions_26(std::string name, int age)
+{
+    std::cout << "Happy Birthday to " << name << '!' << '\n';
+    std::cout << "Happy Birthday to " << name << '!' << '\n';
+    std::cout << "Happy Birthday dear " << name << '!' << '\n';
+    std::cout << "Happy Birthday to " << name << '!' << '\n';
+    std::cout << "You are " << age << " years old!" << '\n';
+}
+
+double returnKeyword_27()
+{
+    double length = 5.2;
+    double result = length * length;
+
+    return result;
 }
