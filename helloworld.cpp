@@ -25,7 +25,15 @@ void usefulStringMethodsInC_17();
 void whileLoops_18();
 void dowhileloops_19();
 void forLoops_20();
+void breakContinue_21();
+void nestedLoops_22();
+void randomNumberGenerator_23();
+void randomEventGenerator_24();
 //* Functions
+
+// 23, 24
+#include <ctime>
+//* 23, 24
 
 // 9, 10
 #include <cmath>
@@ -54,7 +62,7 @@ namespace second
 
 int main()
 {
-    forLoops_20();
+    randomEventGenerator_24();
     return 0;
 }
 
@@ -463,4 +471,88 @@ void forLoops_20()
         std::cout << i << '\n';
     }
     std::cout << "HAPPY NEW YEAR!" << '\n';
+}
+
+void breakContinue_21()
+{
+    for (int i = 0; i <= 20; i++)
+    {
+        if (i == 13)
+        {
+            continue;
+        }
+
+        if (i == 15)
+        {
+            break;
+        }
+        std::cout << i << '\n';
+    }
+}
+
+void nestedLoops_22()
+{
+    int rows;
+    int columns;
+    char symbol;
+
+    std::cout << "How many rows?: " << '\n';
+    std::cin >> rows;
+
+    std::cout << "How many columns?: " << '\n';
+    std::cin >> columns;
+
+    std::cout << "Enter a symbol to use: " << '\n';
+    std::cin >> symbol;
+
+    for (int i = 0; i < rows; i++)
+    {
+        for (int j = 0; j < columns; j++)
+        {
+            std::cout << symbol;
+        }
+        std::cout << '\n';
+    }
+}
+
+void randomNumberGenerator_23()
+{
+    srand(time(NULL));
+
+    int num1 = rand() % 6 + 1;
+    int num2 = rand() % 20 + 6;
+    int num3 = rand() % 100 + 20;
+
+    std::cout << num1 << '\n';
+    std::cout << num2 << '\n';
+    std::cout << num3 << '\n';
+}
+
+void randomEventGenerator_24()
+{
+    srand(time(NULL));
+
+    int randNum = rand() % 5 + 1;
+
+    switch (randNum)
+    {
+    case 1:
+        std::cout << "You win a bumper sticker!" << '\n';
+        break;
+    case 2:
+        std::cout << "You win a t-shirt!" << '\n';
+        break;
+    case 3:
+        std::cout << "You win a free lunch!" << '\n';
+        break;
+    case 4:
+        std::cout << "You win a gift card!" << '\n';
+        break;
+    case 5:
+        std::cout << "You win a concert ticket!" << '\n';
+        break;
+    default:
+        std::cout << "You lose!" << '\n';
+        break;
+    }
 }
