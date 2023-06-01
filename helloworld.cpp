@@ -32,7 +32,20 @@ void randomEventGenerator_24();
 void numberGuessingGame_25();
 void userDefinedFunctions_26(std::string name, int age);
 double returnKeyword_27();
+void overloadedFunctions_28();
+void overloadedFunctions_28(std::string name);
+void variableScope_29();
+void bankingPracticaProgram_30();
 //* Functions
+
+//
+#include <iomanip>
+//
+
+// 29
+int globalNum = 100;
+int globalNum2 = 200;
+//* 29
 
 // 23, 24
 #include <ctime>
@@ -68,9 +81,9 @@ int main()
     std::string name = "Rezi";
     int age = 23;
 
-    returnKeyword_27();
+    bankingPracticaProgram_30();
 
-    std::cout << "Result: " << returnKeyword_27() << "cm^2";
+    // std::cout << "Result: " << returnKeyword_27() << "";
 
     return 0;
 }
@@ -619,4 +632,105 @@ double returnKeyword_27()
     double result = length * length;
 
     return result;
+}
+
+void overloadedFunctions_28()
+{
+    std::cout << "Hello" << '\n';
+}
+
+void overloadedFunctions_28(std::string name)
+{
+    std::cout << "Hello " << name << '\n';
+}
+
+void variableScope_29()
+{
+    int num = 1;
+    int globalNum2 = 2;
+
+    std::cout << num << '\n';
+    std::cout << globalNum << '\n';
+    std::cout << globalNum2 << '\n';
+    std::cout << ::globalNum2 << '\n';
+}
+
+void showBalance_30(double balance)
+{
+    std::cout << '\n'
+              << "*******************" << '\n';
+    std::cout << "Your balance is: " << std::setprecision(2) << std::fixed << balance << '$' << '\n';
+    std::cout << "*******************" << '\n';
+}
+
+double deposit_30()
+{
+    double deposit;
+    std::cout << '\n'
+              << "*******************" << '\n';
+    std::cout << "Enter amount to be deposited: " << '\n';
+    std::cout << "*******************" << '\n';
+    std::cin >> deposit;
+    return deposit;
+}
+
+double withdraw_30(double balance)
+{
+    double withdraw;
+    std::cout << '\n'
+              << "*******************" << '\n';
+    std::cout << "Enter amount to be withdrawn: " << '\n';
+    std::cout << "*******************" << '\n';
+    std::cin >> withdraw;
+    return balance - withdraw;
+}
+
+void bankingPracticaProgram_30()
+{
+    double balance = 125.05;
+    int choice = 0;
+
+    std::cout << '\n'
+              << "************** Bank **************" << '\n';
+
+    do
+    {
+        std::cout << '\n'
+                  << "*******************" << '\n';
+        std::cout << "Enter your choice: " << '\n';
+        std::cout << "*******************" << '\n';
+
+        std::cout << '\n'
+                  << "*******************" << '\n';
+        std::cout << "1. Show Balance" << '\n';
+        std::cout << "2. Deposit Money" << '\n';
+        std::cout << "3. Withdraw Money" << '\n';
+        std::cout << "4. Exit" << '\n';
+        std::cout << "*******************" << '\n';
+        std::cin >> choice;
+
+        switch (choice)
+        {
+        case 1:
+            showBalance_30(balance);
+            break;
+        case 2:
+            balance += deposit_30();
+            showBalance_30(balance);
+            break;
+        case 3:
+            balance = withdraw_30(balance);
+            showBalance_30(balance);
+            break;
+        default:
+            break;
+        }
+    } while (choice != 4);
+
+    std::cout << '\n'
+              << "*******************" << '\n';
+    std::cout << "Thanks for visiting" << '\n';
+    std::cout << "*******************" << '\n';
+
+    std::cout << "**********************************" << '\n';
 }
