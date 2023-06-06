@@ -36,6 +36,12 @@ void overloadedFunctions_28();
 void overloadedFunctions_28(std::string name);
 void variableScope_29();
 void bankingPracticaProgram_30();
+void rockPaperScissorsGame_31();
+void arrays_32();
+void sizeOfOperator_33();
+void iterateOverAnArray_34();
+void foreachLoop_35();
+void passArrayToAFunction_36();
 //* Functions
 
 //
@@ -81,7 +87,7 @@ int main()
     std::string name = "Rezi";
     int age = 23;
 
-    bankingPracticaProgram_30();
+    passArrayToAFunction_36();
 
     // std::cout << "Result: " << returnKeyword_27() << "";
 
@@ -568,7 +574,7 @@ void randomEventGenerator_24()
         std::cout << "You win a free lunch!" << '\n';
         break;
     case 4:
-        std::cout << "You win a gift card!" << '\n';
+        std::cout << "You win a gift carsd!" << '\n';
         break;
     case 5:
         std::cout << "You win a concert ticket!" << '\n';
@@ -733,4 +739,214 @@ void bankingPracticaProgram_30()
     std::cout << "*******************" << '\n';
 
     std::cout << "**********************************" << '\n';
+}
+
+char getUserChoice_31()
+{
+    char player;
+
+    do
+    {
+        std::cout << '\n'
+                  << "Choose on of the following" << '\n';
+        std::cout << "*******************" << '\n';
+        std::cout << "'r' for rock" << '\n';
+        std::cout << "'p' for paper" << '\n';
+        std::cout << "'s' for scissors" << '\n';
+        std::cin >> player;
+    } while (player != 'r' && player != 'p' && player != 's');
+
+    return player;
+}
+
+char getComputerChoice_31()
+{
+    srand(time(NULL));
+    int num = rand() % 3 + 1;
+    switch (num)
+    {
+    case 1:
+        return 'r';
+    case 2:
+        return 'p';
+    case 3:
+        return 's';
+
+    default:
+        break;
+    }
+    return 0;
+}
+
+void showChoice_31(char choice)
+{
+    switch (choice)
+    {
+    case 'r':
+        std::cout << "Rock" << '\n';
+        break;
+    case 'p':
+        std::cout << "Paper" << '\n';
+        break;
+    case 's':
+        std::cout << "Scissors" << '\n';
+        break;
+    default:
+        break;
+    }
+}
+
+void chooseWinner_31(char player, char computer)
+{
+    switch (player)
+    {
+    case 'r':
+        if (computer == 'r')
+        {
+            std::cout << "It's a tie!" << '\n';
+        }
+        else if (computer == 'p')
+        {
+            std::cout << "You win" << '\n';
+        }
+        else
+        {
+            std::cout << "You lose" << '\n';
+        }
+        break;
+    case 'p':
+        if (computer == 'r')
+        {
+            std::cout << "You win" << '\n';
+        }
+        else if (computer == 'p')
+        {
+            std::cout << "It's a tie!" << '\n';
+        }
+        else
+        {
+            std::cout << "You lose" << '\n';
+        }
+        break;
+    case 's':
+        if (computer == 'r')
+        {
+            std::cout << "You lose" << '\n';
+        }
+        else if (computer == 'p')
+        {
+            std::cout << "You win" << '\n';
+        }
+        else
+        {
+            std::cout << "It's a tie!" << '\n';
+        }
+        break;
+    default:
+        break;
+    }
+}
+
+void rockPaperScissorsGame_31()
+{
+    std::cout << '\n'
+              << "************** ROCK PAPER SCISSORS **************" << '\n';
+
+    char player = getUserChoice_31();
+    std::cout << '\n'
+              << "Your choice: " << '\n';
+    showChoice_31(player);
+    char computer = getComputerChoice_31();
+    std::cout << '\n'
+              << "Compiuter choice: " << '\n';
+    showChoice_31(computer);
+
+    chooseWinner_31(player, computer);
+
+    std::cout << "*************************************************" << '\n';
+}
+
+void arrays_32()
+{
+    std::string cars[] = {"Corvette", "Mustang", "Camry"};
+    std::cout << cars[0] << '\n';
+    std::cout << cars[1] << '\n';
+    std::cout << cars[2] << '\n';
+
+    std::cout << '\n';
+
+    cars[0] = "Camaro";
+    std::cout << cars[0] << '\n';
+    std::cout << cars[1] << '\n';
+    std::cout << cars[2] << '\n';
+
+    std::cout << '\n';
+
+    double prices[4];
+    prices[0] = 5.00;
+    prices[1] = 7.50;
+    prices[2] = 9.99;
+    prices[3] = 15.00;
+
+    std::cout << prices[0] << '\n';
+    std::cout << prices[1] << '\n';
+    std::cout << prices[2] << '\n';
+    std::cout << prices[3] << '\n';
+}
+
+void sizeOfOperator_33()
+{
+    std::string name = "Rezi";
+    double gpa = 2.5;
+    char grade = 'A';
+    bool student = true;
+    char grades[] = {'A', 'B', 'C', 'D', 'F'};
+    std::string students[] = {"Spongebob", "Patrick", "Squidward"};
+
+    std::cout << sizeof(name) << " bytes" << '\n';
+    std::cout << sizeof(gpa) << " bytes" << '\n';
+    std::cout << sizeof(grade) << " bytes" << '\n';
+    std::cout << sizeof(student) << " bytes" << '\n';
+    std::cout << sizeof(grades) << " bytes" << '\n';
+    std::cout << sizeof(grades) / sizeof(char) << " elements" << '\n';
+    std::cout << sizeof(students) / sizeof(std::string) << " elements" << '\n';
+}
+
+void iterateOverAnArray_34()
+{
+    std::string students[] = {"Spongebob", "Patrick", "Squidward"};
+
+    for (int i = 0; i < sizeof(students) / sizeof(std::string); i++)
+    {
+        std::cout << students[i] << '\n';
+    }
+}
+
+void foreachLoop_35()
+{
+    std::string students[] = {"Spongebob", "Patrick", "Squidward"};
+    for (std::string student : students)
+    {
+        std::cout << student << '\n';
+    }
+}
+
+double getTotal_36(double prices[], int size)
+{
+    double total = 0;
+    for (int i = 0; i < size; i++)
+    {
+        total += prices[i];
+    }
+
+    return total;
+}
+
+void passArrayToAFunction_36()
+{
+    double prices[] = {49.99, 15.05, 75, 9.99};
+    int size = sizeof(prices) / sizeof(double);
+    double total = getTotal_36(prices, size);
+
+    std::cout << '$' << total << '\n';
 }
