@@ -45,6 +45,8 @@ void passArrayToAFunction_36();
 void searchAnArrayForAnElement_37();
 void sortAnArray_38();
 void fillFunction_39();
+void fillAnArrayWithUserInput_40();
+void multidimensionalArrays_41();
 //* Functions
 
 //
@@ -90,7 +92,7 @@ int main()
     std::string name = "Rezi";
     int age = 23;
 
-    fillFunction_39();
+    multidimensionalArrays_41();
 
     // std::cout << "Result: " << returnKeyword_27() << "";
 
@@ -1021,10 +1023,61 @@ void sortAnArray_38()
 
 void fillFunction_39()
 {
-    std::string foods[10] = {"pizza", "pizza", "pizza", "pizza", "pizza", "pizza", "pizza", "pizza", "pizza", "pizza"};
+    const int SIZE = 99;
+    std::string foods[SIZE];
+
+    fill(foods, foods + SIZE / 3, "Pizza");
+    fill(foods + (SIZE / 3), foods + (SIZE / 3) * 2, "Hamburger");
+    fill(foods + (SIZE / 3) * 2, foods + SIZE, "Hotdog");
 
     for (std::string food : foods)
     {
         std::cout << food << '\n';
+    }
+}
+
+void fillAnArrayWithUserInput_40()
+{
+    std::string foods[5];
+    int size = sizeof(foods) / sizeof(foods[0]);
+    std::string temp;
+
+    for (int i = 0; i < size; i++)
+    {
+        std::cout << "Enter a food you like or 'q' to quit #" << i + 1 << ": " << '\n';
+        std::getline(std::cin, temp);
+        if (temp == "q")
+        {
+            break;
+        }
+        else
+        {
+            foods[i] = temp;
+        }
+    }
+
+    std::cout << "You like the following foods: " << '\n';
+
+    for (int i = 0; !foods[i].empty(); i++)
+    {
+        std::cout << foods[i] << '\n';
+    }
+}
+
+void multidimensionalArrays_41()
+{
+    std::string cars[][4]{{"Mustang", "Escape", "F-150"},
+                          {"Corvette", "Equinox", "Silverado"},
+                          {"Challenger", "Durango", "Ram 1500"}};
+
+    int rows = sizeof(cars) / sizeof(cars[0]);
+    int columns = sizeof(cars[0]) / sizeof(cars[0][0]);
+
+    for (int i = 0; i < rows; i++)
+    {
+        for (int j = 0; j < columns; j++)
+        {
+            std::cout << cars[i][j] << '\n';
+        }
     }
 }
