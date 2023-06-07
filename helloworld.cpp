@@ -42,6 +42,9 @@ void sizeOfOperator_33();
 void iterateOverAnArray_34();
 void foreachLoop_35();
 void passArrayToAFunction_36();
+void searchAnArrayForAnElement_37();
+void sortAnArray_38();
+void fillFunction_39();
 //* Functions
 
 //
@@ -87,7 +90,7 @@ int main()
     std::string name = "Rezi";
     int age = 23;
 
-    passArrayToAFunction_36();
+    fillFunction_39();
 
     // std::cout << "Result: " << returnKeyword_27() << "";
 
@@ -949,4 +952,79 @@ void passArrayToAFunction_36()
     double total = getTotal_36(prices, size);
 
     std::cout << '$' << total << '\n';
+}
+
+int searchArray_37(int array[], int size, int element)
+{
+    for (int i = 0; i < size; i++)
+    {
+        if (array[i] == element)
+        {
+            return i;
+        }
+    }
+    return -1;
+}
+
+void searchAnArrayForAnElement_37()
+{
+    int numbers[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    int size = sizeof(numbers) / sizeof(numbers[0]);
+    int index;
+    int myNum;
+
+    std::cout << "Enter element to search for: " << '\n';
+    std::cin >> myNum;
+
+    index = searchArray_37(numbers, size, myNum);
+
+    if (index != -1)
+    {
+        std::cout << myNum << " is at index " << index << '\n';
+    }
+    else
+    {
+        std::cout << myNum << " is not in array" << '\n';
+    }
+}
+
+void sort_38(int array[], int size)
+{
+    int temp;
+    for (int i = 0; i < size - 1; i++)
+    {
+        for (int j = 0; j < size - i - 1; j++)
+        {
+            if (array[j] > array[j + 1])
+            {
+                temp = array[j];
+                array[j] = array[j] + 1;
+                array[j + 1] = temp;
+            }
+        }
+    }
+}
+
+void sortAnArray_38()
+{
+    int array[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    int size = sizeof(array) / sizeof(array[0]);
+
+    // bubble sort | not efficient
+    sort_38(array, size);
+
+    for (int element : array)
+    {
+        std::cout << element << '\n';
+    }
+}
+
+void fillFunction_39()
+{
+    std::string foods[10] = {"pizza", "pizza", "pizza", "pizza", "pizza", "pizza", "pizza", "pizza", "pizza", "pizza"};
+
+    for (std::string food : foods)
+    {
+        std::cout << food << '\n';
+    }
 }
