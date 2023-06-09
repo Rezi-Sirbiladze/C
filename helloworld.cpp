@@ -49,6 +49,9 @@ void fillAnArrayWithUserInput_40();
 void multidimensionalArrays_41();
 void quizGame_42();
 void memoryAddresses_43();
+void passByValueVsPassByReferences_44();
+void constParameters_45();
+void creditCradValidatorProgram_46();
 //* Functions
 
 //
@@ -94,7 +97,7 @@ int main()
     std::string name = "Rezi";
     int age = 23;
 
-    memoryAddresses_43();
+    creditCradValidatorProgram_46();
 
     // std::cout << "Result: " << returnKeyword_27() << "";
 
@@ -1171,4 +1174,75 @@ void memoryAddresses_43()
     std::cout << &name << '\n';
     std::cout << &age << '\n';
     std::cout << &student << '\n';
+}
+
+void swapValues_44(std::string x, std::string y)
+{
+    std::string temp;
+
+    temp = x;
+    x = y;
+    y = temp;
+}
+
+void swapReferences_44(std::string &x, std::string &y)
+{
+    std::string temp;
+
+    temp = x;
+    x = y;
+    y = temp;
+}
+
+void passByValueVsPassByReferences_44()
+{
+    std::string x = "Kool-Aid";
+    std::string y = "Water";
+
+    swapValues_44(x, y);
+    std::cout << "Values" << '\n';
+    std::cout << "X: " << x << '\n';
+    std::cout << "Y: " << y << '\n';
+
+    std::cout << '\n';
+
+    swapReferences_44(x, y);
+    std::cout << "References" << '\n';
+    std::cout << "X: " << x << '\n';
+    std::cout << "Y: " << y << '\n';
+}
+
+void printInfo_45(const std::string name, const int age)
+{
+    std::cout << name << '\n';
+    std::cout << age << '\n';
+}
+
+void constParameters_45()
+{
+    const std::string name = "Rezi";
+    const int age = 23;
+
+    printInfo_45(name, age);
+}
+
+void creditCradValidatorProgram_46()
+{
+    // Luhn Algorithm
+    std::cout << '\n'
+              << "************** Credit card validator **************" << '\n';
+
+    std::string creditCard = 0;
+    int temp = 0;
+
+    std::cout << "Introduce credit card" << '\n';
+    // 6011 0009 9013 9424
+    std::getline(std::cin, creditCard);
+
+    for (int i = 0; i < creditCard.length(); i += 2)
+    {
+        
+    }
+
+    std::cout << "***************************************************" << '\n';
 }
