@@ -52,6 +52,10 @@ void memoryAddresses_43();
 void passByValueVsPassByReferences_44();
 void constParameters_45();
 void creditCradValidatorProgram_46();
+void pointers_47();
+void nullPointers_48();
+void ticTacToeGame_49();
+void dinamicMemory_50();
 //* Functions
 
 //
@@ -97,7 +101,7 @@ int main()
     std::string name = "Rezi";
     int age = 23;
 
-    creditCradValidatorProgram_46();
+    dinamicMemory_50();
 
     // std::cout << "Result: " << returnKeyword_27() << "";
 
@@ -1226,23 +1230,274 @@ void constParameters_45()
     printInfo_45(name, age);
 }
 
+int getDigit_46(const int number)
+{
+    return number % 10 + (number / 10 % 10);
+}
+
+int sumOddDigits_46(const std::string cardNumber)
+{
+    int sum = 0;
+
+    for (int i = cardNumber.size() - 1; i >= 0; i -= 2)
+    {
+        sum += getDigit_46(cardNumber[i] - '0');
+    }
+
+    return sum;
+}
+
+int sumEvenDigits_46(const std::string cardNumber)
+{
+    int sum = 0;
+
+    for (int i = cardNumber.size() - 2; i >= 0; i -= 2)
+    {
+        sum += getDigit_46((cardNumber[i] - '0') * 2);
+    }
+
+    return sum;
+}
+
 void creditCradValidatorProgram_46()
 {
     // Luhn Algorithm
     std::cout << '\n'
               << "************** Credit card validator **************" << '\n';
 
-    std::string creditCard = 0;
-    int temp = 0;
+    std::string cardNumber;
+    int result = 0;
 
-    std::cout << "Introduce credit card" << '\n';
+    std::cout << "Enter a credit card #: " << '\n';
     // 6011 0009 9013 9424
-    std::getline(std::cin, creditCard);
+    std::cin >> cardNumber;
 
-    for (int i = 0; i < creditCard.length(); i += 2)
+    result = sumEvenDigits_46(cardNumber) + sumOddDigits_46(cardNumber);
+
+    if (result % 10 == 0)
     {
-        
+        std::cout << '\n'
+                  << cardNumber << " is valid" << '\n';
+    }
+    else
+    {
+        std::cout << '\n'
+                  << cardNumber << " is not valid" << '\n';
     }
 
     std::cout << "***************************************************" << '\n';
+}
+
+void pointers_47()
+{
+    std::string name = "Rezi";
+    std::string *pName = &name;
+    int age = 23;
+    int *pAge = &age;
+    std::string freePizzas[5] = {"Pizza1", "Pizza2", "Pizza3", "Pizza4", "Pizza5"};
+    std::string *pFreePizzas = freePizzas;
+
+    std::cout << pName << '\n';
+    std::cout << *pName << '\n';
+    std::cout << pAge << '\n';
+    std::cout << *pAge << '\n';
+    std::cout << pFreePizzas << '\n';
+    std::cout << *pFreePizzas << '\n';
+}
+
+void nullPointers_48()
+{
+    int *pointer = nullptr;
+    int x = 123;
+
+    pointer = &x;
+
+    if (pointer == nullptr)
+    {
+        std::cout << "Address was not assigned!" << '\n';
+    }
+    else
+    {
+        std::cout << "Address was assigned: " << *pointer << '\n';
+    }
+}
+
+void drawBoard_49(char *spaces)
+{
+    std::cout << "__________________" << '\n';
+    for (int i = 0; i < sizeof(spaces) / sizeof(spaces[0]); i += 3)
+    {
+        std::cout << "|     |     |     |" << '\n';
+        std::cout << "|  " << spaces[i] << "  |  " << spaces[i + 1] << "  |  " << spaces[i + 2] << "  |" << '\n';
+        std::cout << "|_____|_____|_____|" << '\n';
+    }
+}
+
+void playerMove_49(char *spaces, char player)
+{
+    int number;
+
+    do
+    {
+        std::cout << "Enter a spot to place a marker (1-9): " << '\n';
+        std::cin >> number;
+        number--;
+        if (spaces[number] == ' ')
+        {
+            spaces[number] = player;
+            break;
+        }
+        else
+        {
+            number = 0;
+        }
+    } while (!number > 0 || !number < 8);
+}
+
+void computerMove_49(char *spaces, char computer)
+{
+    int number;
+    srand(time(NULL));
+
+    while (true)
+    {
+        number = rand() % 9;
+        if (spaces[number] == ' ')
+        {
+            spaces[number] = computer;
+            break;
+        }
+        else
+        {
+            number = 0;
+        }
+    }
+}
+
+bool checkWinner_49(char *spaces, char player, char computer)
+{
+    // Check horizontal lines
+    for (int i = 0; i < 3; i++)
+    {
+        if (spaces[i] != ' ' && spaces[i] == spaces[i + 1] && spaces[i] == spaces[i + 2])
+        {
+            spaces[i] == player ? std::cout << "YOU WIN 1" << '\n' : std::cout << "YOU LOSE 1" << '\n';
+            return true;
+        }
+    }
+
+    // Check vertical lines
+    for (int i = 0; i < 3; i++)
+    {
+        if (spaces[i] != ' ' && spaces[i] == spaces[i + 3] && spaces[i] == spaces[i + 6])
+        {
+            spaces[i] == player ? std::cout << "YOU WIN 2" << '\n' : std::cout << "YOU LOSE 2" << '\n';
+            return true;
+        }
+    }
+
+    // Check diagonals
+    if (spaces[0] != ' ' && spaces[0] == spaces[4] && spaces[0] == spaces[8])
+    {
+        spaces[0] == player ? std::cout << "YOU WIN 3" << '\n' : std::cout << "YOU LOSE 3" << '\n';
+        return true;
+    }
+    if (spaces[2] != ' ' && spaces[2] == spaces[4] && spaces[2] == spaces[6])
+    {
+        spaces[2] == player ? std::cout << "YOU WIN 4" << '\n' : std::cout << "YOU LOSE 4" << '\n';
+        return true;
+    }
+
+    return false;
+}
+
+bool checkTie_49(char *spaces)
+{
+
+    for (int i = 0; i < sizeof(spaces) / sizeof(spaces[0]); i++)
+    {
+        if (spaces[i] == ' ')
+        {
+            return false;
+        }
+    }
+    std::cout << "It's a TIE!" << '\n';
+    return true;
+}
+
+void ticTacToeGame_49()
+{
+    std::cout << '\n'
+              << "************** TIC CAC TOE Game **************" << '\n';
+    char spaces[9] = {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '};
+    char player = 'X';
+    char computer = 'O';
+    bool running = true;
+
+    drawBoard_49(spaces);
+
+    while (running)
+    {
+        playerMove_49(spaces, player);
+        drawBoard_49(spaces);
+        if (checkWinner_49(spaces, player, computer))
+        {
+            running = false;
+            break;
+        }
+        else if (checkTie_49(spaces))
+        {
+            running = false;
+            break;
+        }
+
+        computerMove_49(spaces, computer);
+
+        drawBoard_49(spaces);
+        if (checkWinner_49(spaces, player, computer))
+        {
+            running = false;
+            break;
+        }
+        else if (checkTie_49(spaces))
+        {
+            running = false;
+            break;
+        }
+    }
+    std::cout << "Thanks for playing!";
+    std::cout << "**********************************************" << '\n';
+}
+
+void dinamicMemory_50()
+{
+    int *pNum = NULL;
+    pNum = new int;
+    *pNum = 21;
+    std::cout << "Addres: " << pNum << '\n';
+    std::cout << "Value: " << *pNum << '\n';
+    delete pNum;
+
+    char *pGrades = NULL;
+    int size;
+
+    std::cout << "How many grades to enterin?: " << '\n';
+    std::cin >> size;
+
+    pGrades = new char[size];
+
+    for (int i = 0; i < size; i++)
+    {
+        std::cout << "Enter grade #" << i + 1 << ": " << '\n';
+        std::cin >> pGrades[i];
+    }
+
+    std::cout << '\n';
+
+    for (int i = 0; i < size; i++)
+    {
+        std::cout << pGrades[i] << '\n';
+    }
+
+    delete[] pGrades;
 }
