@@ -56,6 +56,7 @@ void pointers_47();
 void nullPointers_48();
 void ticTacToeGame_49();
 void dinamicMemory_50();
+void recursion_51();
 //* Functions
 
 //
@@ -101,7 +102,7 @@ int main()
     std::string name = "Rezi";
     int age = 23;
 
-    dinamicMemory_50();
+    recursion_51();
 
     // std::cout << "Result: " << returnKeyword_27() << "";
 
@@ -1500,4 +1501,31 @@ void dinamicMemory_50()
     }
 
     delete[] pGrades;
+}
+
+void walk_51(int steps)
+{
+    if (steps > 0)
+    {
+        std::cout << "You take a step!" << '\n';
+        walk_51(steps - 1);
+    }
+}
+
+int factorial_51(int num)
+{
+    if (num > 1)
+    {
+        return num * factorial_51(num - 1);
+    }
+    return 1;
+}
+
+void recursion_51()
+{
+    walk_51(100);
+
+    std::cout << '\n';
+
+    std::cout << "Factorial of 10 is: " << factorial_51(10) << '\n';
 }
