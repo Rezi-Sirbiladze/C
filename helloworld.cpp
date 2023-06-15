@@ -57,6 +57,8 @@ void nullPointers_48();
 void ticTacToeGame_49();
 void dinamicMemory_50();
 void recursion_51();
+void functionTemplates_52();
+void structcs_53();
 //* Functions
 
 //
@@ -102,7 +104,7 @@ int main()
     std::string name = "Rezi";
     int age = 23;
 
-    recursion_51();
+    structcs_53();
 
     // std::cout << "Result: " << returnKeyword_27() << "";
 
@@ -1528,4 +1530,48 @@ void recursion_51()
     std::cout << '\n';
 
     std::cout << "Factorial of 10 is: " << factorial_51(10) << '\n';
+}
+
+template <typename T, typename U>
+auto max(T x, U y)
+{
+    return (x > y) ? x : y;
+}
+
+void functionTemplates_52()
+{
+    std::cout << max(1, 2) << '\n';
+    std::cout << max(1.1, 2.1) << '\n';
+    std::cout << max('1', '2') << '\n';
+    // <typename T, typename U> , auto
+    std::cout << max(1, 2.1) << '\n';
+}
+
+struct student_53
+{
+    std::string name;
+    double gpa;
+    bool enrolled = true;
+};
+
+void structcs_53()
+{
+    student_53 student1;
+    student1.name = "Rezi";
+    student1.gpa = 3.2;
+
+    student_53 student2;
+    student2.name = "Izer";
+    student2.gpa = 2.2;
+    student2.enrolled = false;
+
+    std::cout << student1.name << '\n';
+    std::cout << student1.gpa << '\n';
+    std::cout << student1.enrolled << '\n';
+
+    std::cout << '\n';
+
+    std::cout << student2.name << '\n';
+    std::cout << student2.gpa << '\n';
+    std::cout << student2.enrolled << '\n';
 }
